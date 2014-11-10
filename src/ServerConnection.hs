@@ -78,9 +78,7 @@ trampoline (s, _) handler = do
 
 -- | Send data to the connection
 sendData :: String -> Network ()
-sendData s = do 
-    h <- asks connHandle
-    liftIO $ hPutStrLn h s
+sendData s = asks connHandle >>= liftIO . flip hPutStrLn s
 
 -- | Receive data from the connection
 recvData :: Network String
