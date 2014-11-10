@@ -28,7 +28,8 @@ type ConnectionLoop = Network ()
 --   IO.
 type Network = ReaderT ConnectionData IO
 
--- | Server, starts a server using the information provided.
+-- | Starts a server running on the specified port, and uses handler when a new
+--   connection is made.
 server :: PortNumber -> ConnectionLoop -> IO ()
 server port handler = do
     -- Open a socket on the specified port
@@ -37,7 +38,6 @@ server port handler = do
     listenSocket srv
     -- Jump to the server main loop
     serverLoop srv handler
-
 
 -- Open a new socket on this specific port
 openSocket :: PortNumber -> IO Server
