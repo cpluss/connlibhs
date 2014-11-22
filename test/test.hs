@@ -4,9 +4,7 @@ import ServerConnection
 import Control.Monad.Reader
 
 acceptClient :: Network ()
-acceptClient = do
-    sendData "Hello there!"
-    liftIO $ putStrLn "Connection made..."
+acceptClient = recvData >>= sendData >> acceptClient
 
 main :: IO ()
-main = server 8081 acceptClient
+main = server 8080 acceptClient
