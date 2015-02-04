@@ -1,2 +1,2 @@
 ## Connection Library in Haskell
-tdb.
+tbd.
